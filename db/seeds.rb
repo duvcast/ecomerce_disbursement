@@ -3,3 +3,9 @@
 #
 # Examples:
 #
+be rails g scaffold merchant name:string email:string cif:string
+be rails g scaffold shopper name:string email:string nif:string
+
+be rails g scaffold order amount:float completed_at:datetime merchant:references shopper:references
+
+be rails g scaffold disbursement amount:float order:references

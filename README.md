@@ -13,6 +13,7 @@ Things you may want to cover:
   * Rails 7.0.3
 
 * Configuration
+  * bundle install to install all the gems
   * Setup the database
   * Seed data
 
