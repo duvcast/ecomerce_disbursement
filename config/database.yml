@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: melius
+  password: melius
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: ecomerce_disbursement_development
+
+test:
+  <<: *default
+  database: ecomerce_disbursement_test
+
+production:
+  <<: *default
+  database: ecomerce_disbursement_production
+  username: ecomerce_disbursement
