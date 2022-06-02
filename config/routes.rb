@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :disbursements
+  resources :order_fees
   resources :orders
   resources :shoppers
   resources :merchants

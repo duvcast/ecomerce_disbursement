@@ -1,10 +1,10 @@
-<%= form_with(model: disbursement) do |form| %>
-  <% if disbursement.errors.any? %>
+<%= form_with(model: order_fee) do |form| %>
+  <% if order_fee.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(disbursement.errors.count, "error") %> prohibited this disbursement from being saved:</h2>
+      <h2><%= pluralize(order_fee.errors.count, "error") %> prohibited this order_fee from being saved:</h2>
 
       <ul>
-        <% disbursement.errors.each do |error| %>
+        <% order_fee.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
