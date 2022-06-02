@@ -2,6 +2,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
   def change
     create_table :orders do |t|
       t.float :amount, null: false
+      t.float :disburse
       t.datetime :completed_at
       t.references :merchant, null: false, foreign_key: true
       t.references :shopper, null: false, foreign_key: true

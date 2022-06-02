@@ -60,11 +60,17 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal( OrderFee.all.count, 2, ['Calculate fees for the orders in the week (2)'] )
   end
 
+  test "Calculate the disburse" do
+    shopper = Shopper.create!(name: Faker::Name.name, email: Faker::Internet.email, nif: Faker::Number.number(10))
+    merchant = Merchant.create!(name: Faker::Name.name, email: Faker::Internet.email, cif: Faker::Number.number(10))
+
+    order = Order.create!(amount: 100.0, completed_at: DateTime.now - 30.day, shopper_id: shopper.id,
+                          merchant_id: merchant.id)
+    fee = CalculateFee.new(order).calculate_fee
+    
+    OrderFee.create!(amount: fee, order_id: order.id)
+    
+    assert_equal( order.disburse, (100.0 - (100.0 * 0.095 )) , ['Calculate disburse for the order'] )
+  end
+
 end
-
-
-
-    # merchant = Merchant.new(name: Faker::Name.name, email: Faker::Internet.email, cif: Faker::Number.number(10))
-    # shopper = Shopper.new(name: Faker::Name.name, email: Faker::Internet.email, nif: Faker::Number.number(10))
-    # p merchant
-    # p shopper

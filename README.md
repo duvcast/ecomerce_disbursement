@@ -15,19 +15,15 @@ Things you may want to cover:
 * Configuration
   * bundle install to install all the gems
   * Setup the database
-  * Seed data
 
 * Database creation
   * bundle exec rake db:create
   * bundle exec rake db:migrate
 
-* Database initialization
-  * bundle exec rake db:seed
-
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * bin/rails test test/models/order_test.rb
+  
+* short explanation of your technical choices
+  * Use the default test suite of rails for simplicity.
+  * I create a aditional table for the fee to make more simple the Order class because is the main class in wich wold be a big logic in the future.
+  * Dont secure the API because of the time but it is so important.

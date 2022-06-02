@@ -16,7 +16,15 @@ class Order < ApplicationRecord
     Order.date_range(date_from, date_to).completed.each do |order|
       current_fee = CalculateFee.new(order).calculate_fee
       OrderFee.create(amount: current_fee, order: order)
+      order.update(disburse: order.calculate_disburse)
     end
+  end
+
+  ##
+  # Return the disburse of the order (amount - fee)
+  ##
+  def calculate_disburse
+    amount - order_fee.amount
   end
 
 end

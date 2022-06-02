@@ -14,24 +14,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_02_015042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "disbursements", force: :cascade do |t|
-    t.float "amount"
-    t.bigint "order_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_disbursements_on_order_id"
-  end
-
   create_table "merchants", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "cif"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "cif", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "order_fees", force: :cascade do |t|
-    t.float "amount"
+    t.float "amount", null: false
     t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,7 +31,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_02_015042) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.float "amount"
+    t.float "amount", null: false
+    t.float "disburse"
     t.datetime "completed_at"
     t.bigint "merchant_id", null: false
     t.bigint "shopper_id", null: false
@@ -50,14 +43,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_02_015042) do
   end
 
   create_table "shoppers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "nif"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "nif", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "disbursements", "orders"
   add_foreign_key "order_fees", "orders"
   add_foreign_key "orders", "merchants"
   add_foreign_key "orders", "shoppers"
